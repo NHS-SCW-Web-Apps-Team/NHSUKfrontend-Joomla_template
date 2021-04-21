@@ -162,13 +162,13 @@ $base = JUri::base(); ;
 
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
     <jdoc:include type="message" />
-      <div class="nhsuk-grid-row">
+  <!--    <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-two-thirds">
           <h1>
             Content page template
           </h1>
         </div>
-      </div>
+      </div>-->
 
 
         
