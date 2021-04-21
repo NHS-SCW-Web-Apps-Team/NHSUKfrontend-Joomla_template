@@ -9,19 +9,10 @@
 
 defined('_JEXEC') or die;
 ?>
-<div aria-label="<?php echo htmlspecialchars($module->title, ENT_QUOTES, 'UTF-8'); ?>" role="navigation">
-	<ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb<?php echo $moduleclass_sfx; ?>">
-		<?php if ($params->get('showHere', 1)) : ?>
-			<li>
-				<?php echo JText::_('MOD_BREADCRUMBS_HERE'); ?>&#160;
-			</li>
-		<?php else : ?>
-			<li class="active">
-				<span class="divider icon-location"></span>
-			</li>
-		<?php endif; ?>
-
-		<?php
+<nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+    <div class="nhsuk-width-container">
+        <ol class="nhsuk-breadcrumb__list">
+            <?php
 		// Get rid of duplicated entries on trail including home page when using multilanguage
 		for ($i = 0; $i < $count; $i++)
 		{
@@ -44,31 +35,43 @@ defined('_JEXEC') or die;
 		foreach ($list as $key => $item) :
 			if ($key !== $last_item_key) :
 				// Render all but last item - along with separator ?>
-				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-					<?php if (!empty($item->link)) : ?>
-						<a itemprop="item" href="<?php echo $item->link; ?>" class="pathway"><span itemprop="name"><?php echo $item->name; ?></span></a>
-					<?php else : ?>
-						<span itemprop="name">
-							<?php echo $item->name; ?>
-						</span>
-					<?php endif; ?>
+            <li class="nhsuk-breadcrumb__item">
+                <?php if (!empty($item->link)) : ?>
+                <a itemprop="item" href="<?php echo $item->link; ?>" class="nhsuk-breadcrumb__link"><?php echo $item->name; ?></a>
+                <?php else : ?>
 
-					<?php if (($key !== $penult_item_key) || $show_last) : ?>
-						<span class="divider">
-							<?php echo $separator; ?>
-						</span>
-					<?php endif; ?>
-					<meta itemprop="position" content="<?php echo $key + 1; ?>">
-				</li>
-			<?php elseif ($show_last) :
+                <?php echo $item->name; ?>
+
+                <?php endif; ?>
+
+                <?php /*if (($key !== $penult_item_key) || $show_last) : ?>
+                <span class="divider">
+                    <?php echo $separator; ?>
+                </span>
+                <?php endif; */?>
+
+            </li>
+            <?php elseif ($show_last) :
 				// Render last item if reqd. ?>
-				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="active">
-					<span itemprop="name">
-						<?php echo $item->name; ?>
-					</span>
-					<meta itemprop="position" content="<?php echo $key + 1; ?>">
-				</li>
-			<?php endif;
-		endforeach; ?>
-	</ul>
-</div>
+            <li class="nhsuk-breadcrumb__item" class="active">
+
+                <?php echo $item->name; ?>
+
+            </li>
+
+            <?php endif;?>
+            <?php endforeach; ?>
+        </ol>
+
+        <?php foreach ($list as $key => $item) :
+                if ($key == $penult_item_key) :?>
+
+        <p class="nhsuk-breadcrumb__back"><a class="nhsuk-breadcrumb__backlink" href="<?php echo $item->link; ?>"><?php echo $item->name; ?></a></p>
+
+        <?php endif; endforeach;?>
+
+
+
+
+    </div>
+</nav>
