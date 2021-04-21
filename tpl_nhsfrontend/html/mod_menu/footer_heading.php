@@ -33,4 +33,4 @@ if ($item->menu_image)
 }
 
 ?>
-<span class="separator nhsuk-footer__list-item-link <?php echo $anchor_css; ?>"<?php echo $title; ?>><?php echo $linktype; ?></span>
+<span class="nav-header <?php echo $anchor_css; ?>"<?php echo $title; ?>><?php echo $linktype; ?></span>

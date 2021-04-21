@@ -18,18 +18,23 @@ require_once JPATH_THEMES . '/' . $this->template . '/helper.php';
 tplNhsfrontendHelper::loadCss();
 tplNhsfrontendHelper::loadJs();
 tplNhsfrontendHelper::setMetadata();
-
+$base = JUri::base(); ;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
 
 	<jdoc:include type="head" />
-	
-  <link rel="shortcut icon" href="/assets/favicons/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon-180x180.png">
-  <link rel="mask-icon" href="/assets/favicons/favicon.svg" color="#005eb8">
-  <link rel="icon" sizes="192x192" href="/assets/favicons/favicon-192x192.png">
+  
+	<link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" type="font/woff2" crossorigin>
+  <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
+  <link rel="preconnect  dns-prefetch" href="https://assets.nhs.uk/" crossorigin>
+
+  <link rel="shortcut icon" href="<?php echo $base ;?>templates/nhsfrontend/assets/favicons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="<?php echo $base ;?>templates/nhsfrontend/assets/favicons/apple-touch-icon-180x180.png">
+  <link rel="mask-icon" href="<?php echo $base ;?>templates/nhsfrontend/assets/favicons/favicon.svg" color="#005eb8">
+  <link rel="icon" sizes="192x192" href="<?php echo $base ;?>templates/nhsfrontend/assets/favicons/favicon-192x192.png">
   <meta name="msapplication-TileImage" content="/assets/favicons/mediumtile-144x144.png">
   <meta name="msapplication-TileColor" content="#005eb8">
   <meta name="msapplication-square70x70logo" content="/assets/favicons/smalltile-70x70.png">
@@ -104,6 +109,10 @@ tplNhsfrontendHelper::setMetadata();
       </div>
 
     </div>
+
+    <?php if ($this->countModules('position-1')) : ?>
+		  <jdoc:include type="modules" name="position-1" style="none" />
+	  <?php endif; ?>
 
     <nav class="nhsuk-header__navigation" id="header-navigation" role="navigation" aria-label="Primary navigation" aria-labelledby="label-navigation">
       <div class="nhsuk-width-container">
@@ -207,11 +216,12 @@ tplNhsfrontendHelper::setMetadata();
 </aside>
 
 
-
+<?php if ($this->countModules('footer')) : ?>
   <footer role="contentinfo">
     <div class="nhsuk-footer" id="nhsuk-footer">
       <div class="nhsuk-width-container">
         <h2 class="nhsuk-u-visually-hidden">Support links</h2>
+        <jdoc:include type="modules" name="footer" style="none" />
         <ul class="nhsuk-footer__list">
           <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Accessibility statement</a></li>
           <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Contact us</a></li>
@@ -224,7 +234,7 @@ tplNhsfrontendHelper::setMetadata();
       </div>
     </div>
   </footer>
-
+  <?php endif; ?>
 </html>
 
 
