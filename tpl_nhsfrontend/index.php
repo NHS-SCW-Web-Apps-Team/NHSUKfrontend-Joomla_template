@@ -18,18 +18,19 @@ require_once JPATH_THEMES . '/' . $this->template . '/helper.php';
 tplNhsfrontendHelper::loadCss();
 tplNhsfrontendHelper::loadJs();
 tplNhsfrontendHelper::setMetadata();
+$pageclass=tplNhsfrontendHelper::getPageClass();
 $base = JUri::base(); ;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
 
-	<jdoc:include type="head" />
-  
 	<link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" type="font/woff2" crossorigin>
   <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
   <link rel="preconnect  dns-prefetch" href="https://assets.nhs.uk/" crossorigin>
+  
+  <jdoc:include type="head" />
 
   <link rel="shortcut icon" href="<?php echo $base ;?>templates/nhsfrontend/assets/favicons/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="<?php echo $base ;?>templates/nhsfrontend/assets/favicons/apple-touch-icon-180x180.png">
@@ -41,6 +42,19 @@ $base = JUri::base(); ;
   <meta name="msapplication-square150x150logo" content="/assets/favicons/mediumtile-150x150.png">
   <meta name="msapplication-wide310x150logo" content="/assets/favicons/widetile-310x150.png">
   <meta name="msapplication-square310x310logo" content="/assets/favicons/largetile-310x310.png">
+
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://www.nhs.uk">
+    <meta property="og:title" content="NHS.UK">
+    <meta property="og:description" content="Helping you take control of your health and wellbeing.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<?php echo $base ;?>/assets/logos/open-graph.png">
+    <meta property="og:image:alt" content="nhs.uk">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@nhsuk">
+    <meta name="twitter:creator" content="@nhsuk">
+    <meta name="twitter:image:alt" content="nhs.uk">
 
 </head>
 <body class="<?php echo tplNhsfrontendHelper::setBodySuffix(); ?>">
@@ -86,7 +100,9 @@ $base = JUri::base(); ;
             </svg>
             <span class="nhsuk-u-visually-hidden">Search</span>
           </button>
+          
           <div class="nhsuk-header__search-wrap" id="wrap-search">
+          
             <form class="nhsuk-header__search-form" id="search" action="https://www.nhs.uk/search/" method="get" role="search">
               <label class="nhsuk-u-visually-hidden" for="search-field">Search the NHS website</label>
               <input class="nhsuk-search__input" id="search-field" name="q" type="search" placeholder="Search" autocomplete="off">
@@ -103,16 +119,16 @@ $base = JUri::base(); ;
                 <span class="nhsuk-u-visually-hidden">Close search</span>
               </button>
             </form>
+          
           </div>
+
         </div>
 
       </div>
 
     </div>
 
-    <?php if ($this->countModules('position-1')) : ?>
-		  <jdoc:include type="modules" name="position-1" style="none" />
-	  <?php endif; ?>
+    <?php if ($this->countModules('position-0')) : ?> 
 
     <nav class="nhsuk-header__navigation" id="header-navigation" role="navigation" aria-label="Primary navigation" aria-labelledby="label-navigation">
       <div class="nhsuk-width-container">
@@ -124,62 +140,14 @@ $base = JUri::base(); ;
             <span class="nhsuk-u-visually-hidden">Close menu</span>
           </button>
         </p>
-        <ul class="nhsuk-header__navigation-list">
-          <li class="nhsuk-header__navigation-item nhsuk-header__navigation-item--for-mobile">
-            <a class="nhsuk-header__navigation-link" href="/">
-              Home
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li class="nhsuk-header__navigation-item">
-            <a class="nhsuk-header__navigation-link" href="#">
-              Health A-Z
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li class="nhsuk-header__navigation-item">
-            <a class="nhsuk-header__navigation-link" href="#">
-              Live Well
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li class="nhsuk-header__navigation-item">
-            <a class="nhsuk-header__navigation-link" href="#">
-              Care and support
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li class="nhsuk-header__navigation-item">
-            <a class="nhsuk-header__navigation-link" href="#">
-              Pregnancy
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-          <li class="nhsuk-header__navigation-item">
-            <a class="nhsuk-header__navigation-link" href="#">
-              NHS services
-              <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
-              </svg>
-            </a>
-          </li>
-        </ul>
+        <jdoc:include type="modules" name="position-0" style="none" />
       </div>
     </nav>
 
-  </header>
+    <?php endif; ?>
+</header>
 
-  <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+<nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
       <div class="nhsuk-width-container">
         <ol class="nhsuk-breadcrumb__list">
           <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="/level-one">Level one</a></li>
@@ -188,12 +156,12 @@ $base = JUri::base(); ;
         </ol>
         <p class="nhsuk-breadcrumb__back"><a class="nhsuk-breadcrumb__backlink" href="/level-one/level-two/level-three">Back to Level three</a></p>
       </div>
-  </nav>
+</nav>
 
-  <div class="nhsuk-width-container app-width-container--full ">
+<div class="nhsuk-width-container<?php echo $pageclass ;?>">
 
-    <main class="nhsuk-main-wrapper app-main-wrapper--no-padding app-homepage " id="maincontent" role="main">
-
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+    <jdoc:include type="message" />
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-two-thirds">
           <h1>
@@ -203,15 +171,77 @@ $base = JUri::base(); ;
       </div>
 
 
-        <jdoc:include type="message" />
-	      <jdoc:include type="component" />
+        
 
+	      <jdoc:include type="component" />
+<!--      
+<section class="nhsuk-hero">
+  <div class="nhsuk-width-container nhsuk-hero--border">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds">
+        <div class="nhsuk-hero__wrapper">
+          <h1 class="nhsuk-u-margin-bottom-3">We’re here for you</h1>
+          <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">Helping you take control of your health and wellbeing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nhsuk-hero nhsuk-hero--image nhsuk-hero--image-description" style="background-image: url(&quot;https://assets.nhs.uk/nhsuk-cms/images/IS_0818_homepage_hero_3_913783962.width-1000.jpg&quot;);">
+    <script>
+      function randomImage() {
+          var images =[ 
+            
+                
+                "https://assets.nhs.uk/nhsuk-cms/images/IS_0818_homepage_hero_2_831416400.width-1000.jpg",
+            
+                
+                "https://assets.nhs.uk/nhsuk-cms/images/IS_0818_homepage_hero_3_913783962.width-1000.jpg",
+            
+                
+                "https://assets.nhs.uk/nhsuk-cms/images/AS_0818_homepage_hero_4_169974765.width-1000.jpg",
+            
+                
+                "https://assets.nhs.uk/nhsuk-cms/images/A_0818_homepage_hero_5_KRK6T6.width-1000.jpg",
+            
+                
+                "https://assets.nhs.uk/nhsuk-cms/images/S_0818_homepage_hero_1_F0147446.width-1000.jpg",
+             
+          ]; 
+
+          var size = images.length;
+          var x = Math.floor(size * Math.random());
+          var element = document.getElementsByClassName('nhsuk-hero--image');
+          if (element.length > 0) {
+              element[0].style["background-image"] = "url(" + images[x] + ")";
+          }
+      }
+
+      document.addEventListener("DOMContentLoaded", randomImage);
+  </script>
+  <div class="nhsuk-hero__overlay">
+    <div class="nhsuk-width-container">
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds">
+          <div class="nhsuk-hero-content">
+            <h1 class="nhsuk-u-margin-bottom-3">We’re here for you</h1>
+            <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">Helping you take control of your health and wellbeing.</p>
+            <span class="nhsuk-hero__arrow" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+-->
     </main>
 </div>
 
 <aside>
-    <?php if ($this->countModules('position-1')) : ?>
-		<jdoc:include type="modules" name="position-1" style="none" />
+    <?php if ($this->countModules('position-3')) : ?>
+		<jdoc:include type="modules" name="position-3" style="none" />
 	<?php endif; ?>
 </aside>
 
@@ -222,29 +252,12 @@ $base = JUri::base(); ;
       <div class="nhsuk-width-container">
         <h2 class="nhsuk-u-visually-hidden">Support links</h2>
         <jdoc:include type="modules" name="footer" style="none" />
-     <!--   <ul class="nhsuk-footer__list">
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Accessibility statement</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Contact us</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Cookies</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Privacy policy</a></li>
-          <li class="nhsuk-footer__list-item"><a class="nhsuk-footer__list-item-link" href="#">Terms and conditions</a></li>
-        </ul> -->
-
-        <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
+          <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
       </div>
     </div>
   </footer>
   <?php endif; ?>
 </html>
-
-
-
-
-
-
-
-
-
 
 
 <!--
@@ -270,12 +283,12 @@ $base = JUri::base(); ;
 	<?php endif; ?>
 </aside>
 
-<nhsfrontendter>
+<footer>
 	<jdoc:include type="modules" name="nhsfrontendter" style="none" />
 	<p>
 		&copy; <?php echo date('Y'); ?> <?php echo tplNhsfrontendHelper::getSitename(); ?>
 	</p>
-</nhsfrontendter>
+</footer>
 <jdoc:include type="modules" name="debug" style="none" />
 </body>
 </html>

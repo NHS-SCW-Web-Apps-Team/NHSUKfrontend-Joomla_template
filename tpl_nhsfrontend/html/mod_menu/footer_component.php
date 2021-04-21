@@ -28,7 +28,8 @@ if ($item->anchor_rel)
 
 $attributes['class'] = 'nhsuk-footer__list-item-link';
 $linktype = $item->title;
-
+/*
+// no images disabling Just in case don't even risk it
 if ($item->menu_image)
 {
 	if ($item->menu_image_css)
@@ -45,7 +46,7 @@ if ($item->menu_image)
 	{
 		$linktype .= '<span class="image-title">' . $item->title . '</span>';
 	}
-}
+}*/
 
 if ($item->browserNav == 1)
 {

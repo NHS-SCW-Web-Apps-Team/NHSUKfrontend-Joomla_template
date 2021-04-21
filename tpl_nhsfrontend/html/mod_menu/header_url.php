@@ -18,14 +18,19 @@ if ($item->anchor_title)
 
 if ($item->anchor_css)
 {
-	$attributes['class'] = $item->anchor_css;
+	$attributes['class'] = "nhsuk-header__navigation-link ".$item->anchor_css;
+}else{
+	$attributes['class'] = "nhsuk-header__navigation-link " ;
 }
 
 if ($item->anchor_rel)
 {
 	$attributes['rel'] = $item->anchor_rel;
 }
-$attributes['class'] = 'nhsuk-footer__list-item-link';
+if(isset($attributes['class'])){
+	$attributes['class'] .=" nhsuk-header__navigation-link"; 
+}else{$attributes['class'] =" nhsuk-header__navigation-link";}
+
 $linktype = $item->title;
 /*
 // no images disabling Just in case don't even risk it
@@ -47,6 +52,7 @@ if ($item->menu_image)
 	}
 }
 */
+
 if ($item->browserNav == 1)
 {
 	$attributes['target'] = '_blank';
@@ -63,5 +69,8 @@ elseif ($item->browserNav == 2)
 
 	$attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $options . "'); return false;";
 }
+$svg="<svg class=\"nhsuk-icon nhsuk-icon__chevron-right\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">
+<path d=\"M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z\"></path>
+</svg>" ;
 
-echo JHtml::_('link', JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)), $linktype, $attributes);
+echo JHtml::_('link', JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)), $linktype.$svg, $attributes);

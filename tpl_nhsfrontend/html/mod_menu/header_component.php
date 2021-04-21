@@ -18,14 +18,17 @@ if ($item->anchor_title)
 
 if ($item->anchor_css)
 {
-	$attributes['class'] = $item->anchor_css;
+	$attributes['class'] = "nhsuk-header__navigation-link ".$item->anchor_css;
+}else{
+	$attributes['class'] = "nhsuk-header__navigation-link " ;
 }
 
 if ($item->anchor_rel)
 {
 	$attributes['rel'] = $item->anchor_rel;
 }
-$attributes['class'] = 'nhsuk-footer__list-item-link';
+
+
 $linktype = $item->title;
 /*
 // no images disabling Just in case don't even risk it
@@ -45,23 +48,21 @@ if ($item->menu_image)
 	{
 		$linktype .= '<span class="image-title">' . $item->title . '</span>';
 	}
-}
-*/
+}*/
+
 if ($item->browserNav == 1)
 {
 	$attributes['target'] = '_blank';
-	$attributes['rel'] = 'noopener noreferrer';
-
-	if ($item->anchor_rel == 'nofollow')
-	{
-		$attributes['rel'] .= ' nofollow';
-	}
 }
 elseif ($item->browserNav == 2)
 {
-	$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $params->get('window_open');
+	$options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
 
 	$attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $options . "'); return false;";
 }
 
-echo JHtml::_('link', JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)), $linktype, $attributes);
+$svg="<svg class=\"nhsuk-icon nhsuk-icon__chevron-right\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">
+<path d=\"M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z\"></path>
+</svg>" ;
+
+echo JHtml::_('link', JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)), $linktype.$svg, $attributes);
