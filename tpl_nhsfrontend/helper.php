@@ -264,6 +264,7 @@ class TplNhsfrontendHelper
 	static public function loadJs()
 	{	
 		HTMLHelper::_('script', 'nhsuk-5.0.0.min.js', ['version' => 'auto', 'relative' => true]);
+		HTMLHelper::_('script', 'nunjucks.js', ['version' => 'auto', 'relative' => true]);
 		HTMLHelper::_('script', 'template.js', ['version' => 'auto', 'relative' => true]);
 	}
 

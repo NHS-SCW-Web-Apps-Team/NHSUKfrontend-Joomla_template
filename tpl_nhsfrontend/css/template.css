@@ -17,3 +17,8 @@
     overflow: visible;
     clip: auto;
 }
+
+.app-width-container--full{
+    margin: 0;
+    max-width: none;
+}
