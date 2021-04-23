@@ -166,9 +166,6 @@ $base = JUri::base(); ;
                 </div>
             </div>-->
 
-
-
-
             <jdoc:include type="component" />
             <!--      
 <section class="nhsuk-hero">
