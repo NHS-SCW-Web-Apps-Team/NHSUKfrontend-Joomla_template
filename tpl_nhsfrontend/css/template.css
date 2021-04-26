@@ -5,11 +5,12 @@
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0;
 }
 
-.sr-only-focusable:active, .sr-only-focusable:focus {
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
     position: static;
     width: auto;
     height: auto;
@@ -18,7 +19,7 @@
     clip: auto;
 }
 
-.app-width-container--full{
+.app-width-container--full {
     margin: 0;
     max-width: none;
 }
@@ -27,9 +28,11 @@
     background-color: #fff;
 }
 
-.app-main-wrapper--no-padding ,.app-main-wrapper--no-padding>main {
+.app-main-wrapper--no-padding,
+.app-main-wrapper--no-padding>main {
     padding: 0;
 }
+
 .app-section__content {
     padding-bottom: 64px;
     padding-top: 64px;
@@ -38,6 +41,7 @@
 .app-homepage .nhsuk-section:nth-of-type(2) {
     padding-top: 40px;
 }
+
 .app-homepage .nhsuk-section:nth-of-type(odd) {
     background: #f0f4f5;
 }
@@ -48,16 +52,16 @@
     border-bottom: 1px solid #b1b4b6;
 }
 
-@media (min-width: 40.0625em){
-.govuk-phase-banner__content {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.25;
-}
+@media (min-width: 40.0625em) {
+    .govuk-phase-banner__content {
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1.25;
+    }
 }
 
 .govuk-phase-banner__content {
-    font-family: "GDS Transport",arial,sans-serif;
+    font-family: "GDS Transport", arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
@@ -73,12 +77,12 @@
     margin-right: 10px;
 }
 
-@media (min-width: 40.0625em){
-.govuk-tag {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1;
-}
+@media (min-width: 40.0625em) {
+    .govuk-tag {
+        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1;
+    }
 }
 
 .govuk-tag {
@@ -90,7 +94,7 @@
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: "GDS Transport",arial,sans-serif;
+    font-family: "GDS Transport", arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 700;
@@ -107,3 +111,19 @@
     display: table-cell;
     vertical-align: baseline;
 }
+
+/* START Added by kj . copied from nhs.uk main.css*/
+
+.nhsuk-header__search-form--search-results {
+    display: flex;
+}
+
+.nhsuk-search__input {
+    flex-grow: 2;
+}
+
+.option-com_search .nhsuk-search__submit {
+    padding: 8px 8px 0;
+}
+
+/* END Added by kj . copied from nhs.uk main.css*/
