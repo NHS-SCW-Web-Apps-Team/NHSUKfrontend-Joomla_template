@@ -237,36 +237,38 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 </html>
 
 
-<!--
+<?php /*
 
 <a href="<?php echo $this->baseurl; ?>/">
-    <?php if ($this->params->get('sitedescription')) : ?>
-        <?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription'), ENT_COMPAT, 'UTF-8') . '</div>'; ?>
-    <?php endif; ?>
+<?php if ($this->params->get('sitedescription')) : ?>
+<?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription'), ENT_COMPAT, 'UTF-8') . '</div>'; ?>
+<?php endif; ?>
 </a>
 
-<nav role="navigation" >
-	<jdoc:include type="modules" name="position-0" style="none" />
+<nav role="navigation">
+    <jdoc:include type="modules" name="position-0" style="none" />
 </nav>
 
 <main id="main">
-	<jdoc:include type="message" />
-	<jdoc:include type="component" />
+    <jdoc:include type="message" />
+    <jdoc:include type="component" />
 </main>
 
 <aside>
     <?php if ($this->countModules('position-1')) : ?>
-		<jdoc:include type="modules" name="position-1" style="none" />
-	<?php endif; ?>
+    <jdoc:include type="modules" name="position-1" style="none" />
+    <?php endif; ?>
 </aside>
 
 <footer>
-	<jdoc:include type="modules" name="nhsfrontendter" style="none" />
-	<p>
-		&copy; <?php echo date('Y'); ?> <?php echo tplNhsfrontendHelper::getSitename(); ?>
-	</p>
+    <jdoc:include type="modules" name="nhsfrontendter" style="none" />
+    <p>
+        &copy; <?php echo date('Y'); ?> <?php echo tplNhsfrontendHelper::getSitename(); ?>
+    </p>
 </footer>
 <jdoc:include type="modules" name="debug" style="none" />
 </body>
+
 </html>
--->
+
+*/?>
