@@ -20,6 +20,15 @@ tplNhsfrontendHelper::loadJs();
 tplNhsfrontendHelper::setMetadata();
 $pageclass=tplNhsfrontendHelper::getPageClass();
 $base = JUri::base(); ;
+
+//kj, removing bootstrap and jCaption
+$doc = JFactory::getDocument();
+//JS
+unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
+unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
+//CSS    
+unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -56,6 +65,8 @@ $base = JUri::base(); ;
     <meta name="twitter:site" content="@nhsuk">
     <meta name="twitter:creator" content="@nhsuk">
     <meta name="twitter:image:alt" content="nhs.uk">
+
+
 
 </head>
 
