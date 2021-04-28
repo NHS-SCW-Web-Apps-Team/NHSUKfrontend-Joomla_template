@@ -19,7 +19,7 @@
 	<!-- Add fields to the parameters object for the layout. -->
 	<fields name="params">
 		<fieldset name="basic" label="JGLOBAL_CATEGORY_OPTIONS">
-			<field name="layout_type" type="hidden" default="faq" />
+			<field name="layout_type" type="hidden" default="blog" />
 
 			<field name="show_category_heading_title_text" type="list" label="JGLOBAL_SHOW_CATEGORY_HEADING_TITLE_TEXT_LABEL" description="JGLOBAL_SHOW_CATEGORY_HEADING_TITLE_TEXT_DESC" useglobal="true" class="chzn-color">
 				<option value="0">JHIDE</option>

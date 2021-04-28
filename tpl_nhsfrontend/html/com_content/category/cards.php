@@ -28,6 +28,7 @@ $beforeDisplayContent = trim(implode("\n", $results));
 $results = $dispatcher->trigger('onContentAfterDisplay', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
 $afterDisplayContent = trim(implode("\n", $results));
 
+//var_dump($this->intro_items);
 ?>
 <div class="cards<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Blog">
 
@@ -111,6 +112,8 @@ if($columns == "4"){
 }
 
 	?>
+
+
 
     <?php if (!empty($this->intro_items)) : ?>
     <ul class="nhsuk-grid-row nhsuk-card-group">
