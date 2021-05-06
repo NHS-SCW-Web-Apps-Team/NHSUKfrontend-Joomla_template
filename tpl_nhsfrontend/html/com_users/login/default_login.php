@@ -51,7 +51,7 @@ JHtml::_('behavior.formvalidator');
 			<?php endif; ?>
 			<div class="control-group">
 				<div class="controls">
-					<button type="submit" class="btn btn-primary">
+					<button type="submit" class="btn btn-primary nhsuk-button">
 						<?php echo JText::_('JLOGIN'); ?>
 					</button>
 				</div>
