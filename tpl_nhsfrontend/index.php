@@ -26,13 +26,9 @@ $base = JUri::base(); ;
 $doc = JFactory::getDocument();
 //JS
 unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
-<<<<<<< HEAD
 //unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']); //wanted to remove this too but the problem is that joomla uses this in various places for some stupid reason so have to leave it in or the console gives errors.
-=======
-unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
 unset($doc->_scripts[$this->baseurl.'/templates/nhsfrontend/media/jui/js/bootstrap.min.js']);
 
->>>>>>> 70a4c1eca1ba88e0205f7e78d1b718245de83aef
 //CSS    
 unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
@@ -223,43 +219,3 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
 
 </html>
-<<<<<<< HEAD
-
-
-<?php /*
-
-<a href="<?php echo $this->baseurl; ?>/">
-<?php if ($this->params->get('sitedescription')) : ?>
-<?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription'), ENT_COMPAT, 'UTF-8') . '</div>'; ?>
-<?php endif; ?>
-</a>
-
-<nav role="navigation">
-    <jdoc:include type="modules" name="position-0" style="none" />
-</nav>
-
-<main id="main">
-    <jdoc:include type="message" />
-    <jdoc:include type="component" />
-</main>
-
-<aside>
-    <?php if ($this->countModules('position-1')) : ?>
-    <jdoc:include type="modules" name="position-1" style="none" />
-    <?php endif; ?>
-</aside>
-
-<footer>
-    <jdoc:include type="modules" name="nhsfrontendter" style="none" />
-    <p>
-        &copy; <?php echo date('Y'); ?> <?php echo tplNhsfrontendHelper::getSitename(); ?>
-    </p>
-</footer>
-<jdoc:include type="modules" name="debug" style="none" />
-</body>
-
-</html>
-
-*/?>
-=======
->>>>>>> 70a4c1eca1ba88e0205f7e78d1b718245de83aef
