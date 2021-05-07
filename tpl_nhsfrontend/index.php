@@ -26,7 +26,13 @@ $base = JUri::base(); ;
 $doc = JFactory::getDocument();
 //JS
 unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
+<<<<<<< HEAD
 //unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']); //wanted to remove this too but the problem is that joomla uses this in various places for some stupid reason so have to leave it in or the console gives errors.
+=======
+unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
+unset($doc->_scripts[$this->baseurl.'/templates/nhsfrontend/media/jui/js/bootstrap.min.js']);
+
+>>>>>>> 70a4c1eca1ba88e0205f7e78d1b718245de83aef
 //CSS    
 unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
@@ -217,6 +223,7 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
 
 </html>
+<<<<<<< HEAD
 
 
 <?php /*
@@ -254,3 +261,5 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 </html>
 
 */?>
+=======
+>>>>>>> 70a4c1eca1ba88e0205f7e78d1b718245de83aef
