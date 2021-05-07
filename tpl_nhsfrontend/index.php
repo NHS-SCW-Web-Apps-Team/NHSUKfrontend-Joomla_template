@@ -22,10 +22,11 @@ $pageclass=tplNhsfrontendHelper::getPageClass();
 $base = JUri::base(); ;
 
 //kj, removing bootstrap and jCaption
+
 $doc = JFactory::getDocument();
 //JS
 unset($doc->_scripts[$this->baseurl.'/media/jui/js/bootstrap.min.js']);
-unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']);
+//unset($doc->_scripts[$this->baseurl.'/media/system/js/caption.js']); //wanted to remove this too but the problem is that joomla uses this in various places for some stupid reason so have to leave it in or the console gives errors.
 unset($doc->_scripts[$this->baseurl.'/templates/nhsfrontend/media/jui/js/bootstrap.min.js']);
 
 //CSS    
@@ -136,92 +137,71 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
     <?php endif; ?>
 
 
+    <?php $split = "-full"; ?>
     <div class="nhsuk-width-container<?php echo $pageclass ;?>">
-
         <main class="nhsuk-main-wrapper" id="maincontent" role="main">
             <jdoc:include type="message" />
-            <!--<div class="nhsuk-grid-row">
-                <div class="nhsuk-grid-column-two-thirds">
-                    <h1>
-                        Content page template
-                    </h1>
+            <div class="nhsuk-grid-row">
+                <?php if ($this->countModules('left')) : ?>
+                <?php $split = "-three-quarters"; ?>
+                <div class="nhsuk-grid-column-one-quarter">
+                    <jdoc:include type="modules" name="left" style="none" />
                 </div>
-            </div>-->
-
-
-
-
-            <jdoc:include type="component" />
-            <!--      
-<section class="nhsuk-hero">
-  <div class="nhsuk-width-container nhsuk-hero--border">
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-two-thirds">
-        <div class="nhsuk-hero__wrapper">
-          <h1 class="nhsuk-u-margin-bottom-3">We’re here for you</h1>
-          <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">Helping you take control of your health and wellbeing.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="nhsuk-hero nhsuk-hero--image nhsuk-hero--image-description" style="background-image: url(&quot;https://assets.nhs.uk/nhsuk-cms/images/IS_0818_homepage_hero_3_913783962.width-1000.jpg&quot;);">
-    <script>
-      function randomImage() {
-          var images =[ 
-            
-                
-                "https://assets.nhs.uk/nhsuk-cms/images/IS_0818_homepage_hero_2_831416400.width-1000.jpg",
-            
-                
-                "https://assets.nhs.uk/nhsuk-cms/images/IS_0818_homepage_hero_3_913783962.width-1000.jpg",
-            
-                
-                "https://assets.nhs.uk/nhsuk-cms/images/AS_0818_homepage_hero_4_169974765.width-1000.jpg",
-            
-                
-                "https://assets.nhs.uk/nhsuk-cms/images/A_0818_homepage_hero_5_KRK6T6.width-1000.jpg",
-            
-                
-                "https://assets.nhs.uk/nhsuk-cms/images/S_0818_homepage_hero_1_F0147446.width-1000.jpg",
-             
-          ]; 
-
-          var size = images.length;
-          var x = Math.floor(size * Math.random());
-          var element = document.getElementsByClassName('nhsuk-hero--image');
-          if (element.length > 0) {
-              element[0].style["background-image"] = "url(" + images[x] + ")";
-          }
-      }
-
-      document.addEventListener("DOMContentLoaded", randomImage);
-  </script>
-  <div class="nhsuk-hero__overlay">
-    <div class="nhsuk-width-container">
-      <div class="nhsuk-grid-row">
-        <div class="nhsuk-grid-column-two-thirds">
-          <div class="nhsuk-hero-content">
-            <h1 class="nhsuk-u-margin-bottom-3">We’re here for you</h1>
-            <p class="nhsuk-body-l nhsuk-u-margin-bottom-0">Helping you take control of your health and wellbeing.</p>
-            <span class="nhsuk-hero__arrow" aria-hidden="true"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
--->
+                <?php endif; ?>
+                <div class="nhsuk-grid-column<?php echo $split;?>">
+                    <jdoc:include type="component" />
+                </div>
+            </div>
         </main>
     </div>
 
-    <aside>
-        <?php if ($this->countModules('position-3')) : ?>
-        <jdoc:include type="modules" name="position-3" style="none" />
-        <?php endif; ?>
-    </aside>
+    <?php if ($this->countModules('position-4')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="position-4" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <?php if ($this->countModules('position-5')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="position-5" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if ($this->countModules('position-6')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="position-6" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if ($this->countModules('position-7')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="position-7" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if ($this->countModules('position-8')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="position-8" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
 
 
     <?php if ($this->countModules('footer')) : ?>
@@ -235,5 +215,7 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
         </div>
     </footer>
     <?php endif; ?>
+    <jdoc:include type="modules" name="debug" style="none" />
+
 
 </html>
