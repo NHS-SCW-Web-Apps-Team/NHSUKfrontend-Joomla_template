@@ -175,7 +175,7 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
     </div>
     <?php endif; ?>
     <?php if ($this->countModules('position-6')) : ?>
-    <div class="nhsuk-width-container-fluid">
+    <div class="nhsuk-section">
         <div class="nhsuk-grid-row">
             <div class="nhsuk-grid-column-full">
                 <jdoc:include type="modules" name="position-6" style="none" />
