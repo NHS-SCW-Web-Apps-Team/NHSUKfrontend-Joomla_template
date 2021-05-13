@@ -38,6 +38,18 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
 <head>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPNPBNMNLZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZPNPBNMNLZ');
+    </script>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" type="font/woff2" crossorigin>
     <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
@@ -80,7 +92,17 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
     <a href="#maincontent" class="sr-only sr-only-focusable"><?php echo Text::_('TPL_NHSFRONTEND_SKIP_LINK_LABEL'); ?></a>
 
-    <?php echo tplNhsfrontendHelper::setAnalytics(0, 'your-analytics-id'); ?>
+    <?php echo tplNhsfrontendHelper::setAnalytics(0, 'UA-44111874-1'); ?>
+
+    <?php if ($this->countModules('cookiestop')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="cookiestop" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <header class="nhsuk-header" role="banner">
         <div class="nhsuk-width-container nhsuk-header__container">
@@ -215,6 +237,19 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
         </div>
     </footer>
     <?php endif; ?>
+
+
+    <?php if ($this->countModules('cookies')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="cookies" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+
     <jdoc:include type="modules" name="debug" style="none" />
 
 
