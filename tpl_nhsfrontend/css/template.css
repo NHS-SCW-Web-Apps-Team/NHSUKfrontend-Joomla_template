@@ -210,3 +210,7 @@ a.gov-download {
 }
 
 /* END Added by Abdus Samad */
+
+.document_thumbnail img {
+    width: 100%;
+}
