@@ -252,5 +252,6 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
     <jdoc:include type="modules" name="debug" style="none" />
 
+</body>
 
 </html>
