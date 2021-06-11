@@ -19,8 +19,7 @@ tplNhsfrontendHelper::loadCss();
 tplNhsfrontendHelper::loadJs();
 tplNhsfrontendHelper::setMetadata();
 $pageclass=tplNhsfrontendHelper::getPageClass();
-$base = JUri::base(); ;
-
+$base = JUri::base();
 //kj, removing bootstrap and jCaption
 
 $doc = JFactory::getDocument();
@@ -32,12 +31,16 @@ unset($doc->_scripts[$this->baseurl.'/templates/nhsfrontend/media/jui/js/bootstr
 //CSS    
 unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
+//Deal with the cookie consent
+$app =JFactory::getApplication();
+$allowNonEssentialCookies = $app->getUserState( "cookieconsent.non_essential_cookie_consent_variable", "FALSE");
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 
 <head>
-
+    <?php if($allowNonEssentialCookies== "TRUE") : ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPNPBNMNLZ"></script>
     <script>
@@ -50,6 +53,7 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
     gtag('config', 'G-ZPNPBNMNLZ');
     </script>
+    <?php endif; ?>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" type="font/woff2" crossorigin>
     <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
@@ -91,8 +95,9 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
     </script>
 
     <a href="#maincontent" class="sr-only sr-only-focusable"><?php echo Text::_('TPL_NHSFRONTEND_SKIP_LINK_LABEL'); ?></a>
+    <cookieholder></cookieholder>
 
-    <?php echo tplNhsfrontendHelper::setAnalytics(0, 'UA-44111874-1'); ?>
+
 
     <?php if ($this->countModules('cookiestop')) : ?>
     <div class="nhsuk-width-container">
@@ -160,68 +165,80 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
 
     <?php $split = "-full"; ?>
-    <div class="nhsuk-width-container<?php echo $pageclass ;?>">
-        <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-            <jdoc:include type="message" />
-            <div class="nhsuk-grid-row">
-                <?php if ($this->countModules('left')) : ?>
-                <?php $split = "-three-quarters"; ?>
-                <div class="nhsuk-grid-column-one-quarter">
-                    <jdoc:include type="modules" name="left" style="none" />
+    <section class="nhsuk-section maincontent">
+        <div class="nhsuk-width-container<?php echo $pageclass ;?>">
+            <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+                <jdoc:include type="message" />
+                <div class="nhsuk-grid-row">
+                    <?php if ($this->countModules('left')) : ?>
+                    <?php $split = "-three-quarters"; ?>
+                    <div class="nhsuk-grid-column-one-quarter">
+                        <jdoc:include type="modules" name="left" style="none" />
+                    </div>
+                    <?php endif; ?>
+                    <div class="nhsuk-grid-column<?php echo $split;?>">
+                        <jdoc:include type="component" />
+                    </div>
                 </div>
-                <?php endif; ?>
-                <div class="nhsuk-grid-column<?php echo $split;?>">
-                    <jdoc:include type="component" />
-                </div>
-            </div>
-        </main>
-    </div>
-
+            </main>
+        </div>
+    </section>
     <?php if ($this->countModules('position-4')) : ?>
-    <div class="nhsuk-width-container-fluid">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-4" style="none" />
+    <section class="nhsuk-section">
+        <div class="nhsuk-width-container-fluid">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-4" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
 
     <?php if ($this->countModules('position-5')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-5" style="none" />
+    <section class="nhsuk-section whitebg">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-5" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
     <?php if ($this->countModules('position-6')) : ?>
-    <div class="nhsuk-section">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-6" style="none" />
+    <section class="nhsuk-section">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-6" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
     <?php if ($this->countModules('position-7')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-7" style="none" />
+    <section class="nhsuk-section ">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-7" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
     <?php if ($this->countModules('position-8')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-8" style="none" />
+    <section class="nhsuk-section">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-8" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
     <?php endif; ?>
 
 
@@ -252,6 +269,5 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
     <jdoc:include type="modules" name="debug" style="none" />
 
-</body>
 
 </html>
