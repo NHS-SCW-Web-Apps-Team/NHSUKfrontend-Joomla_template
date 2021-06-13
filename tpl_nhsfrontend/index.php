@@ -31,7 +31,7 @@ unset($doc->_scripts[$this->baseurl.'/templates/nhsfrontend/media/jui/js/bootstr
 //CSS    
 unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
-//Deal with the cookie consent
+//grab this flag from the cookieconsent plugin so we can use it in the template should we wish. We don't use it at the moment as I have made the plugin do all the work. Just leaving this incase we need it in the the future.
 $app =JFactory::getApplication();
 $allowNonEssentialCookies = $app->getUserState( "cookieconsent.non_essential_cookie_consent_variable", "FALSE");
 
@@ -40,20 +40,7 @@ $allowNonEssentialCookies = $app->getUserState( "cookieconsent.non_essential_coo
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 
 <head>
-    <?php if($allowNonEssentialCookies== "TRUE") : ?>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPNPBNMNLZ"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-ZPNPBNMNLZ');
-    </script>
-    <?php endif; ?>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" type="font/woff2" crossorigin>
     <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
