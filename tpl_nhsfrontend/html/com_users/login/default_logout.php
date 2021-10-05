@@ -8,7 +8,8 @@
  */
 
 defined('_JEXEC') or die;
-
+$app = JFactory::getApplication();
+$app->redirect(JRoute::_('index.php?option=com_leder&Itemid=123'));
 ?>
 <div class="logout<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>

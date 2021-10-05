@@ -19,8 +19,7 @@ tplNhsfrontendHelper::loadCss();
 tplNhsfrontendHelper::loadJs();
 tplNhsfrontendHelper::setMetadata();
 $pageclass=tplNhsfrontendHelper::getPageClass();
-$base = JUri::base(); ;
-
+$base = JUri::base();
 //kj, removing bootstrap and jCaption
 
 $doc = JFactory::getDocument();
@@ -32,12 +31,19 @@ unset($doc->_scripts[$this->baseurl.'/templates/nhsfrontend/media/jui/js/bootstr
 //CSS    
 unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
+//grab this flag from the cookieconsent plugin so we can use it in the template should we wish. We don't use it at the moment as I have made the plugin do all the work. Just leaving this incase we need it in the the future.
+$app =JFactory::getApplication();
+$allowNonEssentialCookies = $app->getUserState( "cookieconsent.non_essential_cookie_consent_variable", "FALSE");
+
+$fluid="";
+if($this->params->get('templatewidth')==1){$fluid="-fluid";}
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 
 <head>
-
+    
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" type="font/woff2" crossorigin>
     <link rel="preload" as="font" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" type="font/woff2" crossorigin>
     <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
@@ -76,14 +82,40 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 <body class="<?php echo tplNhsfrontendHelper::setBodySuffix(); ?>">
     <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    
+    
+      if (!String.prototype.trim) {
+          String.prototype.trim = function () {
+                return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+              };
+      }
+    
+        if (!String.prototype.includes) {
+            String.prototype.includes = function() {
+                'use strict';
+                return String.prototype.indexOf.apply(this, arguments) !== -1;
+            };
+        }
+        
     </script>
 
     <a href="#maincontent" class="sr-only sr-only-focusable"><?php echo Text::_('TPL_NHSFRONTEND_SKIP_LINK_LABEL'); ?></a>
+    <cookieholder></cookieholder>
 
-    <?php echo tplNhsfrontendHelper::setAnalytics(0, 'your-analytics-id'); ?>
+
+
+    <?php if ($this->countModules('cookiestop')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="cookiestop" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <header class="nhsuk-header" role="banner">
-        <div class="nhsuk-width-container nhsuk-header__container">
+        <div class="nhsuk-width-container<?php echo $fluid; ?> nhsuk-header__container">
             <div class="nhsuk-header__logo nhsuk-header__logo--only">
                 <a class="nhsuk-header__link" href="<?php echo $this->baseurl; ?>/" aria-label="NHS homepage">
                     <svg class="nhsuk-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 16">
@@ -111,8 +143,8 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
         <?php if ($this->countModules('position-0')) : ?>
 
-        <nav class="nhsuk-header__navigation" id="header-navigation" role="navigation" aria-label="Primary navigation" aria-labelledby="label-navigation">
-            <div class="nhsuk-width-container">
+        <nav class="nhsuk-header__navigation <?php echo $fluid ;?>" id="header-navigation" role="navigation" aria-label="Primary navigation" aria-labelledby="label-navigation">
+            <div class="nhsuk-width-container<?php echo $fluid ;?>">
                 <p class="nhsuk-header__navigation-title"><span id="label-navigation">Menu</span>
                     <button class="nhsuk-header__navigation-close" id="close-menu">
                         <svg class="nhsuk-icon nhsuk-icon__close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -138,68 +170,80 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
 
 
     <?php $split = "-full"; ?>
-    <div class="nhsuk-width-container<?php echo $pageclass ;?>">
-        <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-            <jdoc:include type="message" />
-            <div class="nhsuk-grid-row">
-                <?php if ($this->countModules('left')) : ?>
-                <?php $split = "-three-quarters"; ?>
-                <div class="nhsuk-grid-column-one-quarter">
-                    <jdoc:include type="modules" name="left" style="none" />
+    <section class="nhsuk-section maincontent">
+        <div class="nhsuk-width-container<?php echo $fluid." ".$pageclass ;?>">
+            <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+                <jdoc:include type="message" />
+                <div class="nhsuk-grid-row">
+                    <?php if ($this->countModules('left')) : ?>
+                    <?php $split = "-three-quarters"; ?>
+                    <div class="nhsuk-grid-column-one-quarter">
+                        <jdoc:include type="modules" name="left" style="none" />
+                    </div>
+                    <?php endif; ?>
+                    <div class="nhsuk-grid-column<?php echo $split;?>">
+                        <jdoc:include type="component" />
+                    </div>
                 </div>
-                <?php endif; ?>
-                <div class="nhsuk-grid-column<?php echo $split;?>">
-                    <jdoc:include type="component" />
-                </div>
-            </div>
-        </main>
-    </div>
-
+            </main>
+        </div>
+    </section>
     <?php if ($this->countModules('position-4')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-4" style="none" />
+    <section class="nhsuk-section">
+        <div class="nhsuk-width-container-fluid">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-4" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
 
     <?php if ($this->countModules('position-5')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-5" style="none" />
+    <section class="nhsuk-section whitebg">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-5" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
     <?php if ($this->countModules('position-6')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-6" style="none" />
+    <section class="nhsuk-section">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-6" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
     <?php if ($this->countModules('position-7')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-7" style="none" />
+    <section class="nhsuk-section ">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-7" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
     <?php endif; ?>
     <?php if ($this->countModules('position-8')) : ?>
-    <div class="nhsuk-width-container">
-        <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-full">
-                <jdoc:include type="modules" name="position-8" style="none" />
+    <section class="nhsuk-section">
+        <div class="nhsuk-width-container">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+                    <jdoc:include type="modules" name="position-8" style="none" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
     <?php endif; ?>
 
 
@@ -207,7 +251,7 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
     <?php if ($this->countModules('footer')) : ?>
     <footer role="contentinfo">
         <div class="nhsuk-footer" id="nhsuk-footer">
-            <div class="nhsuk-width-container">
+            <div class="nhsuk-width-container<?php echo $fluid ;?>">
                 <h2 class="nhsuk-u-visually-hidden">Support links</h2>
                 <jdoc:include type="modules" name="footer" style="none" />
                 <p class="nhsuk-footer__copyright">&copy; Crown copyright</p>
@@ -215,6 +259,19 @@ unset($doc->_stylesheets[$this->baseurl.'/media/jui/js/bootstrap.css']);
         </div>
     </footer>
     <?php endif; ?>
+
+
+    <?php if ($this->countModules('cookies')) : ?>
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+            <div class="nhsuk-grid-column-full">
+                <jdoc:include type="modules" name="cookies" style="none" />
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+
     <jdoc:include type="modules" name="debug" style="none" />
 
 

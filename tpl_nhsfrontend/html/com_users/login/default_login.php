@@ -13,7 +13,15 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 
 ?>
-<div class="login<?php echo $this->pageclass_sfx; ?>">
+<?php
+	$doc = JFactory::getDocument();
+	$style = '.nhsuk-label.star {display:none}';
+	$style .= '.control-label > .nhsuk-label {font-weight:bold}'; 
+	$doc->addStyleDeclaration($style);
+?>
+  
+<div class="login<?php echo $this->pageclass_sfx; ?> nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
 	<?php if ($this->params->get('show_page_heading')) : ?>
 		<div class="page-header">
 			<h1>
@@ -33,6 +41,7 @@ JHtml::_('behavior.formvalidator');
 	<?php if (($this->params->get('logindescription_show') == 1 && str_replace(' ', '', $this->params->get('login_description')) != '') || $this->params->get('login_image') != '') : ?>
 		</div>
 	<?php endif; ?>
+        
 	<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.login'); ?>" method="post" class="form-validate form-horizontal well">
 		<fieldset class="nhsuk-fieldset" >
 			<?php echo $this->form->renderFieldset('credentials'); ?>
@@ -61,17 +70,20 @@ JHtml::_('behavior.formvalidator');
 			<?php echo JHtml::_('form.token'); ?>
 		</fieldset>
 	</form>
+	
+   </div>
 </div>
 <div>
+    <h2 class="nhsuk-heading-l">Problems signing in</h2>
 	<ul class="nav nav-tabs nav-stacked">
 		<li>
 			<a href="<?php echo JRoute::_('index.php?option=com_users&view=reset'); ?>">
-				<?php echo JText::_('COM_USERS_LOGIN_RESET'); ?>
+				<?php echo JText::_('TPL_NHSFRONTEND_LOGIN_RESET'); ?>
 			</a>
 		</li>
 		<li>
 			<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
-				<?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?>
+				<?php echo JText::_('TPL_NHSFRONTEND_LOGIN_REMIND'); ?>
 			</a>
 		</li>
 		<?php $usersConfig = JComponentHelper::getParams('com_users'); ?>

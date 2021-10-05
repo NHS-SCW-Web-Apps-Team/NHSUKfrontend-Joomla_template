@@ -8,6 +8,14 @@
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Http\HttpFactory;
+$app = JFactory::getApplication();
+//$app = JFactory::getApplication();
+//$template = $app->getTemplate(true);
+//$tparams=$template->params;
+/*$fluid="";
+if($tparams->get('templatewidth')==1){$fluid="-fluid";}
+echo $fluid;*/
 ?>
 <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
     <div class="nhsuk-width-container">

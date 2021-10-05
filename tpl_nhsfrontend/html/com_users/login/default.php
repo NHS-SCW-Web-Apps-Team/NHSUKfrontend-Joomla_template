@@ -9,7 +9,14 @@
 
 defined('_JEXEC') or die;
 
+
 $cookieLogin = $this->user->get('cookieLogin');
+
+?>
+  
+
+   
+<?php
 
 if (!empty($cookieLogin) || $this->user->get('guest'))
 {

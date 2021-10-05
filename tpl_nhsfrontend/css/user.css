@@ -1,0 +1,88 @@
+div.text-right.jlikeToolbar__buttons{
+  background: #005eb8;
+}
+
+#jlikeToolbar {
+  background: #005eb8!important;
+}
+
+#jlikeToolbar_content {
+  background: #005eb8;
+  color: white;
+}
+
+#jlikeToolbar .toolbar_buttons .fa {
+  color:white;
+}
+
+span.like-snippet {
+  display:none;
+}
+
+div.likes, div.enrolledUsers, div.recommendUsers, div.courseTaughtBy, div.assignUsers {
+  display:none;
+}
+
+div.courseInfo.panel.panel-default {
+  display:none;
+}
+
+body.option-com_tjlms div.popover {
+  
+}
+
+#jlikeToolbar .toolbar_buttons{}
+#jlikeToolbar .toolbar_buttons.closeBtn{display:inline-block;}
+
+.hidden{
+  visibility:hidden;
+  height:0px;
+  }
+
+.tab-pane{display: none}
+
+.d-none {
+    display: none!important;
+}
+
+.show{display:block;}
+
+/*
+.fade:not(.show) {
+    opacity: 0;
+}
+.fade {
+    transition: opacity .15s linear;
+}
+*/
+
+.nhsuk-contents-list__item ul{display:none;}
+.nhsuk-contents-list__item ul.active{display:block;}
+
+
+
+a.nhsuk-back-link__link {
+   display:none;
+}
+
+.courselanding .tjlms-filters, .courselanding .tjlmspin__cat, .courselanding .tjlmspin__likes_users, .courselanding .pin__body--btn.mb-15{
+	display:none;
+}
+
+.-fluid{max-width:100% !important}
+
+@keyframes spinner-border{
+  to {transform:rotate(360deg);}
+}
+
+.spinner-border{
+  display:inline-block;
+  width:2rem;
+  height:2rem;
+  vertical-align:text-bottom;
+  border: .25em solid currentColor;
+  border-right-color:transparent;
+  border-radius:50%;
+  -webkit-animation: .75s linear infinite spinner-border;
+  animation: .75s linear infinite spinner-border;
+}

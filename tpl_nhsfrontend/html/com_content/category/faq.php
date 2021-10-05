@@ -65,7 +65,7 @@ $afterDisplayContent = trim(implode("\n", $results));
     </div>
     <?php endif; ?>
 
-
+    <?php  //start ?>
 
     <?php if (empty($this->lead_items) && empty($this->link_items) && empty($this->intro_items)) : ?>
     <?php if ($this->params->get('show_no_articles', 1)) : ?>
@@ -88,7 +88,7 @@ $afterDisplayContent = trim(implode("\n", $results));
     </div><!-- end items-leading -->
     <?php endif; ?>
 
-
+    <?php  //end?>
 
     <?php
 	$introcount = count($this->intro_items);
@@ -97,6 +97,8 @@ $afterDisplayContent = trim(implode("\n", $results));
 
     <?php if (!empty($this->intro_items)) : ?>
     <?php foreach ($this->intro_items as $key => &$item) : ?>
+      
+  
     <?php $rowcount = ((int) $key % (int) $this->columns) + 1; ?>
     <?php if ($rowcount === 1) : ?>
     <?php $row = $counter / $this->columns; ?>

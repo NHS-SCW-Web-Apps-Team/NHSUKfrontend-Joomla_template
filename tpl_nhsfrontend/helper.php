@@ -263,9 +263,14 @@ class TplNhsfrontendHelper
 	 */
 	static public function loadJs()
 	{	
-		HTMLHelper::_('script', 'nunjucks.js', ['version' => 'auto', 'relative' => true]);
+		HTMLHelper::_('script', 'modernizr.js', ['version' => 'auto', 'relative' => true]);
+		//HTMLHelper::_('script', 'nunjucks.js', ['version' => 'auto', 'relative' => true]);
 		HTMLHelper::_('script', 'nhsuk-5.0.0.min.js', ['version' => 'auto', 'relative' => true]);
 		HTMLHelper::_('script', 'template.js', ['version' => 'auto', 'relative' => true]);
+		
+		HTMLHelper::_('script', 'iframeResizer.contentWindow.js', ['version' => 'auto', 'relative' => true],['defer'=>"defer"]);
+		HTMLHelper::_('script', 'nhsuk-frontend.js', ['version' => 'auto', 'relative' => true],['defer'=>"defer"]);
+
 	}
 
 	/**
