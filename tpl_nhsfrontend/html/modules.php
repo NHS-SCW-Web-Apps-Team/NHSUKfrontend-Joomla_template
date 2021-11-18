@@ -54,6 +54,7 @@ function modChrome_well($module, &$params, &$attribs)
 		}
 
 		echo $module->content;
+      echo '<hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">';
 		echo '</' . $moduleTag . '>';
 	}
 }

@@ -11,6 +11,13 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
+//use the field helper class to get the custom fields
+JLoader::register('FieldsHelper', JPATH_ADMINISTRATOR . '/components/com_fields/helpers/fields.php');
+$fields = FieldsHelper::getFields($context, $article, true);
+// Added so as to access fields by their name
+
+
+
 // Create shortcuts to some parameters.
 $params  = $this->item->params;
 $urls    = json_decode($this->item->urls);
@@ -26,7 +33,13 @@ $currentDate       = JFactory::getDate()->format('Y-m-d H:i:s');
 $isNotPublishedYet = $this->item->publish_up > $currentDate;
 $isExpired         = $this->item->publish_down < $currentDate && $this->item->publish_down !== JFactory::getDbo()->getNullDate();
 
+
+
+
+  
 ?>
+  
+
 
 <div class="item-page<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Article">
     <meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language; ?>" />
@@ -54,14 +67,24 @@ $isExpired         = $this->item->publish_down < $currentDate && $this->item->pu
     <div class="clearfix"> </div>
     <?php endif; ?>
 
-    */ ?>
+    */ 
+        // Use some field's raw value
+if(!empty($this->item->jcfields['subtitle']->rawvalue)){
+    echo '<p>'.$this->item->jcfields['subtitle']->rawvalue.'</p>';
+}
+
+      $fields = $this->item->jcfields;
+if(!empty($fields[3]->rawvalue)){
+echo '<p class="nhsuk-lede-text">'.$fields[3]->rawvalue.'</p>';
+}
+      ?>
 
 
     <?php if ($params->get('show_title')) : ?>
     <div class="page-header">
-        <h2 itemprop="headline">
+        <h1 itemprop="headline">
             <?php echo $this->escape($this->item->title); ?>
-        </h2>
+        </h1>
         <?php if ($this->item->state == 0) : ?>
         <span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
         <?php endif; ?>

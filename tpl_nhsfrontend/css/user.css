@@ -46,7 +46,7 @@ body.option-com_tjlms div.popover {
 }
 
 .show{display:block;}
-
+.float-right{float:right}
 /*
 .fade:not(.show) {
     opacity: 0;
@@ -61,9 +61,9 @@ body.option-com_tjlms div.popover {
 
 
 
-a.nhsuk-back-link__link {
+/*a.nhsuk-back-link__link {
    display:none;
-}
+}*/
 
 .courselanding .tjlms-filters, .courselanding .tjlmspin__cat, .courselanding .tjlmspin__likes_users, .courselanding .pin__body--btn.mb-15{
 	display:none;

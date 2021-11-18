@@ -43,7 +43,7 @@ $msgList = $displayData['msgList'];
 			*/
 		}
 	
- endforeach;
+ endforeach ;
 
 ?>
 <div id="system-message-container">
@@ -56,14 +56,14 @@ $msgList = $displayData['msgList'];
 						//echo "<div class=\"nhsuk-u-padding-3 nhsuk-u-margin-2 nhsuk-u-font-weight-bold \"style=\"background-color:#00703c; color:#ffffff;\" >".$msg."</div>" ;
 						echo "<div class=\"nhsuk-inset-text\"><span class=\"nhsuk-u-visually-hidden\">Information: </span>";
 						echo "<p>".$msg."</p></div>";
-			endforeach;
+			endforeach ;
 		endif ; 
 		?> 
 	
 <!-- Messages end -->	
 
 <!-- Errors Messages Start -->	
-	<? if (is_array($errormsgs) && !empty($errormsgs)) : ?>
+	<?php if (is_array($errormsgs) && !empty($errormsgs)) : ?>
 		<div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
 		  <h2 class="nhsuk-error-summary__title" id="error-summary-title">
 		    There is a problem
@@ -75,33 +75,32 @@ $msgList = $displayData['msgList'];
 				<?php if (!empty($msgs)) : ?>
 				<?php foreach ($msgs as $msg) : ?>
 			      <li><?php echo $msg; ?></li>
-				  <?php endforeach; ?>
-				<?php endif; ?>
-			  <?php endforeach; ?>
+				  <?php endforeach ; ?>
+				<?php endif ; ?>
+			  <?php endforeach ; ?>
 		    </ul>
 		  </div>
 		</div>
-	<?php endif; ?>
+	<?php endif ; ?>
 <!-- Error Messages end-->
 
 <!-- Warnings Start -->
-	<? if (isset($warningcalloutmsgs) && is_array($warningcalloutmsgs) && !empty($warningcalloutmsgs)) : ?>
-		<div class="nhsuk-warning-callout">
-	  <h3 class="nhsuk-warning-callout__label">
-	    <span role="text">
-	      <span class="nhsuk-u-visually-hidden">Important: </span>
-	      Important
-	    </span>
-	  </h3>
-	  <?php foreach ($warningcalloutmsgs as $type => $msgs) : ?>	
-			<?php if (!empty($msgs)) : ?>
-			<?php foreach ($msgs as $msg) : ?>
-		      <p><?php echo $msg; ?></p>
-			  <?php endforeach; ?>
-			<?php endif; ?>
-		  <?php endforeach; ?>
-	</div>
-	<?php endif; ?>
+	<?php if (isset($warningcalloutmsgs) && is_array($warningcalloutmsgs) && !empty($warningcalloutmsgs)): ?>
+			<div class="nhsuk-warning-callout">
+				<h3 class="nhsuk-warning-callout__label">
+					<span role="text"><span class="nhsuk-u-visually-hidden">Important: </span>Important</span>
+				</h3>
+	<?php		
+			foreach ($warningcalloutmsgs as $type => $msgs) : 	
+					if (!empty($msgs)) : 
+						foreach ($msgs as $msg) :
+							echo "<p>".$msg."</p>" ;
+						endforeach ; 
+					endif ; 
+			endforeach ; 
+	?>	
+			</div>
+	<?php endif ; ?>
 	
 <!-- Warnings End -->
 

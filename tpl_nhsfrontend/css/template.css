@@ -230,6 +230,7 @@ button.nhsuk-link{
     text-decoration: underline;
     border: none;
     padding: unset;
+    background:none;
 }
 
 /* table - even row */
@@ -309,6 +310,7 @@ https://hmcts-design-system.herokuapp.com/components/sortable-table */
 
  /* pagination
  https://hmcts-design-system.herokuapp.com/components/pagination */
+ /*
  @media (min-width: 48.0625em) {
    .nhsuk-pagination {
      margin-left: -5px;
@@ -440,7 +442,7 @@ https://hmcts-design-system.herokuapp.com/components/sortable-table */
  .nhsuk-pagination__results {
    padding: 5px;
  }
-
+*/
 /* accordion
 https://design-system.service.gov.uk/components/accordion/ */
 
@@ -723,3 +725,15 @@ border-bottom: none;
 .nhsuk-summary-list__row {
 flex-direction: column;
 }}
+
+
+/*KJ pdf to html styling*/
+
+.nhsuk-contents-list__item .nhsuk-contents-list__link.active{
+  text-decoration: none;
+  color: black;
+  
+}
+.nhsuk-contents-list__item .nhsuk-contents-list__link.active:visited,.nhsuk-contents-list__item .nhsuk-contents-list__link.active:active{
+  color: black;
+}
